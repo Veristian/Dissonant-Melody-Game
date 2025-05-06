@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c0f6e451d02a4409de8ffea8a9014c, type: 3}
+  m_Name: Rest - Whole
+  m_EditorClassIdentifier: 
+  noteImage: {fileID: 21300000, guid: ff849eb40b31c474d8beb06ec6215e88, type: 3}
+  noteSuccessImage: {fileID: 21300000, guid: 051946379042eec4fb420fbd46866b64, type: 3}
+  noteFailImage: {fileID: 21300000, guid: b41cb3464d0a9254fb9e9f6052bad97e, type: 3}
+  type: 0
+  ability: 5
+  isRest: 1
+  PressedLowerBound: 0
+  PressedUpperBound: 0
+  ReleaseLowerBound: 0
+  ReleaseUpperBound: 0

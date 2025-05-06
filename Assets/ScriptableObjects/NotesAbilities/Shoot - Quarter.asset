@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c0f6e451d02a4409de8ffea8a9014c, type: 3}
+  m_Name: Shoot - Quarter
+  m_EditorClassIdentifier: 
+  noteImage: {fileID: 21300000, guid: 891979f5fecaecb43816daa0d5a324b4, type: 3}
+  noteSuccessImage: {fileID: 21300000, guid: 66f359a968c7e4e4eaf9abd1e08054bd, type: 3}
+  noteFailImage: {fileID: 21300000, guid: 9409dd0b6c677d245b133aaab61bffad, type: 3}
+  type: 2
+  ability: 3
+  isRest: 0
+  PressedLowerBound: 0.04
+  PressedUpperBound: 0.02
+  ReleaseLowerBound: 0.125
+  ReleaseUpperBound: 0.125

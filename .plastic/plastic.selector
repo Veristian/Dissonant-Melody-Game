@@ -1,0 +1,4 @@
+repository "CGHC@Veristian@cloud"
+  path "/"
+    br "/main"
+    co "/main"

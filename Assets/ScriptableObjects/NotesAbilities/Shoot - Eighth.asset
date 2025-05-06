@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c0f6e451d02a4409de8ffea8a9014c, type: 3}
+  m_Name: Shoot - Eighth
+  m_EditorClassIdentifier: 
+  noteImage: {fileID: 21300000, guid: 233fb9e2532971c48aa04cfccecde084, type: 3}
+  noteSuccessImage: {fileID: 21300000, guid: 4d8d023fca7918044a87728cd604072d, type: 3}
+  noteFailImage: {fileID: 21300000, guid: ed24c69f758aacb45be23884966ca20b, type: 3}
+  type: 3
+  ability: 3
+  isRest: 0
+  PressedLowerBound: 0.04
+  PressedUpperBound: 0.02
+  ReleaseLowerBound: 0.125
+  ReleaseUpperBound: 0.125

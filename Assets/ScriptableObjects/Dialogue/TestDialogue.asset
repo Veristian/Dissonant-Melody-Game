@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625da0555aa42341b9a64d1835bbfc2, type: 3}
+  m_Name: TestDialogue
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - characterName: Fenny
+    dialogueText: Hello This is a test Dialog.
+    diaogueSpeed: 0.05
+    waitTime: 2
+    continueFromPrevious: 0
+  - characterName: Fenny
+    dialogueText: I said this is just a test dialog
+    diaogueSpeed: 0.05
+    waitTime: 2
+    continueFromPrevious: 0
+  - characterName: Fenny
+    dialogueText: So uhm...
+    diaogueSpeed: 0.05
+    waitTime: 1
+    continueFromPrevious: 0
+  - characterName: Fenny
+    dialogueText: why are you still here?
+    diaogueSpeed: 0.05
+    waitTime: 2
+    continueFromPrevious: 1
+  - characterName: Fenny
+    dialogueText: shoo loser
+    diaogueSpeed: 0.05
+    waitTime: 2
+    continueFromPrevious: 0
