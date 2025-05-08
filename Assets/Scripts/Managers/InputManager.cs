@@ -17,7 +17,10 @@ public class InputManager : MonoBehaviour
     public static bool AbilityIsHeld;
     public static bool AbilityWasReleased;
     public static bool SwitchCameraPressed;
+    public static bool SkipWasPressed;
+
     private static bool canTakeInputs;
+    
 
     private InputAction _moveAction;
     private InputAction _jumpAction;
@@ -25,6 +28,8 @@ public class InputManager : MonoBehaviour
     private InputAction _abilityAction;
     private InputAction _switchCamera;
     private InputAction _menuAction; 
+    private InputAction _skipAction; 
+
 
 
     private void Awake()
@@ -40,6 +45,7 @@ public class InputManager : MonoBehaviour
         _abilityAction = PlayerInput.actions["Ability"];
         _switchCamera = PlayerInput.actions["Switch Camera"];
         _menuAction = PlayerInput.actions["Menu"];
+        _skipAction = PlayerInput.actions["Skip"];
 
         LevelManager.Instance.OnPlayerSpawned.AddListener(() => EnableInputs());
     }
@@ -48,21 +54,39 @@ public class InputManager : MonoBehaviour
     {
         if (canTakeInputs)
         {
-            Movement = _moveAction.ReadValue<Vector2>();
+            if (!(DialogueManager.Instance.inDialogue || DialogueManager.Instance.betweenDialogue))
+            {  
+                Movement = _moveAction.ReadValue<Vector2>();
 
-            JumpWasPressed = _jumpAction.WasPressedThisFrame();
-            JumpIsHeld = _jumpAction.IsPressed();
-            JumpWasReleased = _jumpAction.WasReleasedThisFrame();
+                JumpWasPressed = _jumpAction.WasPressedThisFrame();
+                JumpIsHeld = _jumpAction.IsPressed();
+                JumpWasReleased = _jumpAction.WasReleasedThisFrame();
 
-            RunIsHeld = _runAction.IsPressed();
+                RunIsHeld = _runAction.IsPressed();
 
-            AbilityWasPressed = _abilityAction.WasPressedThisFrame();
-            AbilityIsHeld = _abilityAction.IsPressed();
-            AbilityWasReleased = _abilityAction.WasReleasedThisFrame();
+                AbilityWasPressed = _abilityAction.WasPressedThisFrame();
+                AbilityIsHeld = _abilityAction.IsPressed();
+                AbilityWasReleased = _abilityAction.WasReleasedThisFrame();
+
+            }
+            else
+            {
+                Movement = Vector2.zero; // Disable movement when in dialogue
+                JumpWasPressed = false;
+                JumpIsHeld = false;
+                JumpWasReleased = false;
+
+                RunIsHeld = false;
+
+                AbilityWasPressed = false;
+                AbilityIsHeld = false;
+                AbilityWasReleased = false;
+            }
 
             SwitchCameraPressed = _switchCamera.WasPressedThisFrame();
-
             PauseWasPressed = _menuAction.WasPressedThisFrame();
+            SkipWasPressed = _skipAction.WasPressedThisFrame();
+
         }
     }
 

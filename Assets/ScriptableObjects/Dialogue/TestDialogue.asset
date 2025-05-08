@@ -13,27 +13,32 @@ MonoBehaviour:
   m_Name: TestDialogue
   m_EditorClassIdentifier: 
   dialogueLines:
-  - characterName: Fenny
+  - lineNumber: 0
+    character: 0
     dialogueText: Hello This is a test Dialog.
     diaogueSpeed: 0.05
     waitTime: 2
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 1
+    character: 0
     dialogueText: I said this is just a test dialog
     diaogueSpeed: 0.05
     waitTime: 2
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 2
+    character: 0
     dialogueText: So uhm...
     diaogueSpeed: 0.05
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 3
+    character: 0
     dialogueText: why are you still here?
     diaogueSpeed: 0.05
     waitTime: 2
     continueFromPrevious: 1
-  - characterName: Fenny
+  - lineNumber: 4
+    character: 0
     dialogueText: shoo loser
     diaogueSpeed: 0.05
     waitTime: 2
