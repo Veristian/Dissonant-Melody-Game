@@ -13,314 +13,317 @@ MonoBehaviour:
   m_Name: Prologue - Move Tutorial
   m_EditorClassIdentifier: 
   dialogueLines:
-  - characterName: Fenny
+  - lineNumber: 0
+    character: 0
     dialogueText: 'Ugh.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
+    diaogueSpeed: 0.03
+    waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 1
+    character: 0
     dialogueText: My head hurts..
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
-    dialogueText: 'Where.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: Am I..?
-    diaogueSpeed: 0.05
+  - lineNumber: 2
+    character: 0
+    dialogueText: Where.. Am I..?
+    diaogueSpeed: 0.03
     waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
-    dialogueText: 'What.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: Is this place..?
-    diaogueSpeed: 0.05
+  - lineNumber: 3
+    character: 0
+    dialogueText: What.. Is this place..?
+    diaogueSpeed: 0.03
     waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: ???
+    continueFromPrevious: 0
+  - lineNumber: 4
+    character: 1
     dialogueText: Are you okay Fenny?
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1.5
     continueFromPrevious: 0
-  - characterName: 
+  - lineNumber: 5
+    character: 1
     dialogueText: ...
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 2
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 6
+    character: 0
     dialogueText: Huh!?
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: 'Who.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
-    continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: Are you..?
-    diaogueSpeed: 0.05
+  - lineNumber: 7
+    character: 0
+    dialogueText: Who.. Are you..?
+    diaogueSpeed: 0.03
     waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
-    dialogueText: 'How do you.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: Know my name..?
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: ???
+  - lineNumber: 8
+    character: 0
+    dialogueText: How do you.. Know my name..?
+    diaogueSpeed: 0.03
+    waitTime: 1.8
+    continueFromPrevious: 0
+  - lineNumber: 9
+    character: 1
     dialogueText: Don't you remember?
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: 'No.. '
-    diaogueSpeed: 0.05
-    waitTime: 1
+  - lineNumber: 10
+    character: 0
+    dialogueText: No.. But..
+    diaogueSpeed: 0.03
+    waitTime: 1.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: But..
-    diaogueSpeed: 0.05
-    waitTime: 1
-    continueFromPrevious: 1
-  - characterName: Fenny
+  - lineNumber: 11
+    character: 0
     dialogueText: 'I feel like.. '
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 12
+    character: 0
     dialogueText: I've seen you somewhere..
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
-    dialogueText: 'It''s kind of.. '
-    diaogueSpeed: 0.05
-    waitTime: 1
+    diaogueSpeed: 0.03
+    waitTime: 1.8
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: 'Vague.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.3
-    continueFromPrevious: 1
-  - characterName: Fenny
-    dialogueText: In my memory..
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
+  - lineNumber: 13
+    character: 0
+    dialogueText: It's kind of.. Vague.. In my memory
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 14
+    character: 0
     dialogueText: Ugh..
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: ???
+  - lineNumber: 15
+    character: 1
     dialogueText: Hmm..
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: ???
-    dialogueText: 'For now, '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
+  - lineNumber: 16
+    character: 1
+    dialogueText: For now, you can call me "Ryu".
+    diaogueSpeed: 0.03
+    waitTime: 1.8
     continueFromPrevious: 0
-  - characterName: ???
-    dialogueText: you can call me "Ryu"
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
+  - lineNumber: 17
+    character: 0
     dialogueText: Ryu..?
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Ryu
+  - lineNumber: 18
+    character: 1
     dialogueText: Yes.
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 19
+    character: 0
     dialogueText: So, Ryu..
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 20
+    character: 0
     dialogueText: Why am I here..?
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Ryu
+    continueFromPrevious: 0
+  - lineNumber: 21
+    character: 1
     dialogueText: Good question.
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Ryu
+  - lineNumber: 22
+    character: 1
     dialogueText: I wonder how you ended up being here.
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
+    waitTime: 2.2
+    continueFromPrevious: 0
+  - lineNumber: 23
+    character: 0
+    dialogueText: How do I leave this place?
+    diaogueSpeed: 0.03
     waitTime: 1.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: How do I leave this place?
-    diaogueSpeed: 0.05
-    waitTime: 1
-    continueFromPrevious: 0
-  - characterName: Ryu
+  - lineNumber: 24
+    character: 1
     dialogueText: You can leave this place by clearing all 3 of the stages in this
       world.
-    diaogueSpeed: 0.05
-    waitTime: 1.5
+    diaogueSpeed: 0.03
+    waitTime: 3.5
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 25
+    character: 0
     dialogueText: What do you mean 3 stages?
-    diaogueSpeed: 0.05
-    waitTime: 1
+    diaogueSpeed: 0.03
+    waitTime: 1.5
     continueFromPrevious: 0
-  - characterName: Ryu
+  - lineNumber: 26
+    character: 1
     dialogueText: Exactly as I say it.
-    diaogueSpeed: 0.05
-    waitTime: 1
+    diaogueSpeed: 0.03
+    waitTime: 1.5
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 27
+    character: 0
     dialogueText: Huh?
-    diaogueSpeed: 0.05
-    waitTime: 0.5
-    continueFromPrevious: 0
-  - characterName: Ryu
-    dialogueText: Exactly as I say it.
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 28
+    character: 1
+    dialogueText: Exactly as I say it.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 29
+    character: 0
     dialogueText: Huh?
-    diaogueSpeed: 0.05
-    waitTime: 0.5
-    continueFromPrevious: 0
-  - characterName: Ryu
-    dialogueText: Exactly as I say it.
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 30
+    character: 1
+    dialogueText: Exactly as I say it.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 31
+    character: 0
     dialogueText: "H\u2014"
-    diaogueSpeed: 0.05
-    waitTime: 0.1
+    diaogueSpeed: 0.03
+    waitTime: 0.2
     continueFromPrevious: 0
-  - characterName: Ryu
+  - lineNumber: 32
+    character: 1
     dialogueText: Stop..
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Ryu
-    dialogueText: 'Anyways, '
-    diaogueSpeed: 0.05
-    waitTime: 1
+  - lineNumber: 33
+    character: 1
+    dialogueText: Anyways, try to get used to the controls first for now.
+    diaogueSpeed: 0.03
+    waitTime: 3
     continueFromPrevious: 0
-  - characterName: Ryu
-    dialogueText: try to get used to the controls first for now.
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
+  - lineNumber: 34
+    character: 0
     dialogueText: Why should I finish the stage in the first place!?
-    diaogueSpeed: 0.05
-    waitTime: 1.5
+    diaogueSpeed: 0.03
+    waitTime: 2.5
     continueFromPrevious: 0
-  - characterName: Ryu
+  - lineNumber: 35
+    character: 1
     dialogueText: Do you want to leave this place?
-    diaogueSpeed: 0.05
-    waitTime: 1
-    continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: I do..
-    diaogueSpeed: 0.05
-    waitTime: 1
-    continueFromPrevious: 0
-  - characterName: Ryu
-    dialogueText: Then you need to clear the stages.
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: 'Fine.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
-    continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: I will finish the stages as fast as possible..
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Fenny
-    dialogueText: 'The faster I finish it, the faster I could get out of this.. '
-    diaogueSpeed: 0.05
-    waitTime: 0.5
-    continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: weird place.
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Ryu
-    dialogueText: That's the spirit..!
-    diaogueSpeed: 0.05
-    waitTime: 1
-    continueFromPrevious: 0
-  - characterName: Ryu
-    dialogueText: Now..
-    diaogueSpeed: 0.05
-    waitTime: 0.5
-    continueFromPrevious: 0
-  - characterName: Ryu
-    dialogueText: lets start from the basic shall we?
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 1
-  - characterName: Ryu
-    dialogueText: Press "A" and "D" to move around.
-    diaogueSpeed: 0.05
-    waitTime: 1.5
-    continueFromPrevious: 0
-  - characterName: 
-    dialogueText: ...
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
     waitTime: 2
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: "Wha\u2014!"
-    diaogueSpeed: 0.05
-    waitTime: 0.5
-    continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: Hey Ryu!
-    diaogueSpeed: 0.05
+  - lineNumber: 36
+    character: 0
+    dialogueText: I do..
+    diaogueSpeed: 0.03
     waitTime: 1
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: Where are you!?
-    diaogueSpeed: 0.05
-    waitTime: 1
+  - lineNumber: 37
+    character: 1
+    dialogueText: Then you need to clear the stages.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: ...
-    diaogueSpeed: 1
-    waitTime: 1
-    continueFromPrevious: 0
-  - characterName: Fenny
+  - lineNumber: 38
+    character: 0
     dialogueText: 'Fine.. '
-    diaogueSpeed: 0.05
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 39
+    character: 0
+    dialogueText: I will finish the stages as fast as possible..
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 40
+    character: 0
+    dialogueText: The faster I finish it, the faster I could get out of this.. weird
+      place.
+    diaogueSpeed: 0.03
+    waitTime: 4
+    continueFromPrevious: 0
+  - lineNumber: 41
+    character: 1
+    dialogueText: That's the spirit..!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 42
+    character: 1
+    dialogueText: 'Now.. '
+    diaogueSpeed: 0.03
     waitTime: 0.5
     continueFromPrevious: 0
-  - characterName: Fenny
-    dialogueText: I'll do this..!
-    diaogueSpeed: 0.05
+  - lineNumber: 43
+    character: 1
+    dialogueText: Lets start from the basic shall we?
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 44
+    character: 1
+    dialogueText: Press "A" and "D" to move around.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 45
+    character: 1
+    dialogueText: ...
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 46
+    character: 0
+    dialogueText: "Wha\u2014!"
+    diaogueSpeed: 0.03
     waitTime: 1
-    continueFromPrevious: 1
+    continueFromPrevious: 0
+  - lineNumber: 47
+    character: 0
+    dialogueText: Hey Ryu!
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 48
+    character: 0
+    dialogueText: Where are you!?
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 49
+    character: 0
+    dialogueText: ...
+    diaogueSpeed: 0.2
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 50
+    character: 0
+    dialogueText: 'Fine.. '
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 51
+    character: 0
+    dialogueText: I'll do this..!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0

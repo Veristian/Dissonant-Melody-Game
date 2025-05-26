@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c0f6e451d02a4409de8ffea8a9014c, type: 3}
   m_Name: Hop - Quarter
   m_EditorClassIdentifier: 
-  noteImage: {fileID: 21300000, guid: ecc0232f92377184584c8c16d7f71735, type: 3}
-  noteSuccessImage: {fileID: 21300000, guid: 66f359a968c7e4e4eaf9abd1e08054bd, type: 3}
-  noteFailImage: {fileID: 21300000, guid: 9409dd0b6c677d245b133aaab61bffad, type: 3}
+  noteImage: {fileID: 21300000, guid: 5a0b2e3049d147c4c98eaf0f494dbab9, type: 3}
+  noteSuccessImage: {fileID: 21300000, guid: 8e9dd5f84ed4fb5479f410d3bce4df34, type: 3}
+  noteFailImage: {fileID: 21300000, guid: e4351a7345eec05478893ba4e38d169e, type: 3}
   type: 2
   ability: 2
   isRest: 0
@@ -22,3 +22,5 @@ MonoBehaviour:
   PressedUpperBound: 0.02
   ReleaseLowerBound: 0.125
   ReleaseUpperBound: 0.125
+  noteSuccessSound: {fileID: 8300000, guid: cdfd2815a8fcde143941e623ae7f7eed, type: 3}
+  noteFailSound: {fileID: 8300000, guid: 1dabc0f939ed57d4bb51c95879753e36, type: 3}

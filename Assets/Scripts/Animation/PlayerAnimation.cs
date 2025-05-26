@@ -15,6 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     public bool teleport;
     public bool teleport_hold;
 
+
     [SerializeField] private float timeToIdleAnim;
     private float timer;
     // Start is called before the first frame update

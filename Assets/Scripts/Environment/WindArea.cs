@@ -5,15 +5,15 @@ using UnityEngine;
 public class WindArea : Environment
 {
     [Header("Settings")]
-    [SerializeField] private float windForce;
-    [SerializeField] private Vector2 windDirection;
+    public float windForce;
+    public Vector2 windDirection;
 
     private float newWindForce;
     private Vector2 newWindDirection;
  
     private void Start()
     {
-        unityEvent.AddListener(() => playerMovement.ApplyWind(newWindForce,newWindDirection));
+        unityEvent.AddListener(() => GameObject.FindAnyObjectByType<PlayerMovement>().ApplyWind(newWindForce,newWindDirection));
 
     }
     protected override void PlayerEnterTrigger()

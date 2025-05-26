@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Moveset",
+                    "type": "Button",
+                    "id": "7a76096d-374f-4ebc-9d68-0f4be091ba05",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -182,28 +191,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7d887d6a-3489-4ef6-b429-874db35f18b5",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "dda19c6b-4e6a-4b90-addc-3f4bfacc1970",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Ability",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b9399977-cc69-4dcb-a2c4-5dbb46d7f1f0",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -237,8 +224,30 @@
                 },
                 {
                     "name": "",
+                    "id": "59011aba-10b0-4429-83f2-1503ae62b4cb",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "9ab54c86-4597-4b69-96f8-e9562a398e3e",
                     "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38c69af6-6baa-42dc-8119-1aeab2051ea0",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -265,6 +274,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d428cc4-ffb1-47fb-bea0-3a4c188fe0eb",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Moveset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "825d941e-e2e1-4dcd-9351-c74c04d0a25d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Moveset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

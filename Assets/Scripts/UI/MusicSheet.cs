@@ -35,6 +35,7 @@ public class MusicSheet : MonoBehaviour
     [SerializeField] private float Float;
     [SerializeField] private float Teleport;
     [SerializeField] private float None;
+    [SerializeField] private float progressOffset;
 
     private void Awake()
     {
@@ -45,7 +46,7 @@ public class MusicSheet : MonoBehaviour
     {
         if (NoteManager.Instance.start && progressBar != null)
         {
-            progressBarTransform.position = new Vector3(progressBarStartTransform.x + NoteManager.Instance.Progress*noteDistanceScale, progressBarStartTransform.y);
+            progressBarTransform.position = new Vector3(progressBarStartTransform.x + NoteManager.Instance.Progress*noteDistanceScale, progressBarStartTransform.y + progressOffset);
 
         }
     }
@@ -100,6 +101,7 @@ public class MusicSheet : MonoBehaviour
             progressBarTransform = progressBar.GetComponent<RectTransform>();
             progressBarTransform.position += new Vector3(Origin.x + startPadding, Origin.y);
             progressBarStartTransform = progressBarTransform.position;
+            progressBar.GetComponent<RectTransform>().position += new Vector3(0, progressOffset);
         }
 
 

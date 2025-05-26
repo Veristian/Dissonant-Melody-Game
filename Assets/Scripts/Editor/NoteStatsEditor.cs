@@ -14,6 +14,9 @@ public class NoteTypeStatsEditor : Editor
     private SerializedProperty pressedUpperBound_Prop;
     private SerializedProperty releaseLowerBound_Prop;
     private SerializedProperty releaseUpperBound_Prop;
+    private SerializedProperty noteSuccessSound_Prop;
+    private SerializedProperty noteFailSound_Prop;
+
 
     private void OnEnable()
     {
@@ -27,6 +30,9 @@ public class NoteTypeStatsEditor : Editor
         pressedUpperBound_Prop = serializedObject.FindProperty("PressedUpperBound");
         releaseLowerBound_Prop = serializedObject.FindProperty("ReleaseLowerBound");
         releaseUpperBound_Prop = serializedObject.FindProperty("ReleaseUpperBound");
+        noteSuccessSound_Prop = serializedObject.FindProperty("noteSuccessSound");
+        noteFailSound_Prop = serializedObject.FindProperty("noteFailSound");
+
     }
 
     public override void OnInspectorGUI()
@@ -52,6 +58,9 @@ public class NoteTypeStatsEditor : Editor
             }
 
         }
+
+        EditorGUILayout.PropertyField(noteSuccessSound_Prop, new GUIContent("Note Success Sound"));
+        EditorGUILayout.PropertyField(noteFailSound_Prop, new GUIContent("Note Fail Sound"));
 
         serializedObject.ApplyModifiedProperties();
     }

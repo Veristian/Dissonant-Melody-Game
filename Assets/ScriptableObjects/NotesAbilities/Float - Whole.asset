@@ -22,3 +22,5 @@ MonoBehaviour:
   PressedUpperBound: 0.02
   ReleaseLowerBound: 0.25
   ReleaseUpperBound: 0
+  noteSuccessSound: {fileID: 8300000, guid: 8d3f290828cf65f4baff929317f733c2, type: 3}
+  noteFailSound: {fileID: 8300000, guid: 4ced0c26cefea35439c032090fffaa28, type: 3}

@@ -80,7 +80,7 @@ public class MusicSheetCollectible : Collectable
         }
         else if (bpm != prevBpm)
         {
-            maxTime = 60f * (4 / totalLength) / bpm; // Update maxTime from bpm
+            maxTime = 60f * (totalLength * 4) / bpm; // Update maxTime from bpm
         }
 
         prevMaxTime = maxTime;

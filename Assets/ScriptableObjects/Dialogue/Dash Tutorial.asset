@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625da0555aa42341b9a64d1835bbfc2, type: 3}
+  m_Name: Dash Tutorial
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - lineNumber: 0
+    character: 0
+    dialogueText: Wait...
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 1
+    character: 0
+    dialogueText: What... Is this..?
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 2
+    character: 1
+    dialogueText: ...
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 3
+    character: 1
+    dialogueText: That is your ability.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 4
+    character: 1
+    dialogueText: You can activate your ability by pressing "{" (Left Click).
+    diaogueSpeed: 0.03
+    waitTime: 2.5
+    continueFromPrevious: 0
+  - lineNumber: 5
+    character: 0
+    dialogueText: Why is it a music note!?
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 6
+    character: 1
+    dialogueText: Ah yes..
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 7
+    character: 1
+    dialogueText: Because you need to activate the skill in a correct rhythm.
+    diaogueSpeed: 0.03
+    waitTime: 3
+    continueFromPrevious: 0
+  - lineNumber: 8
+    character: 0
+    dialogueText: And why must I activate it in a correct rhythm.
+    diaogueSpeed: 0.03
+    waitTime: 2.5
+    continueFromPrevious: 0
+  - lineNumber: 9
+    character: 1
+    dialogueText: Hoho..
+    diaogueSpeed: 0.03
+    waitTime: 0.8
+    continueFromPrevious: 0
+  - lineNumber: 10
+    character: 1
+    dialogueText: Who knows.
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 11
+    character: 0
+    dialogueText: You know..
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 12
+    character: 0
+    dialogueText: I'VE QUIT MUSIC!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 13
+    character: 1
+    dialogueText: ...
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 14
+    character: 1
+    dialogueText: Calm down young lady.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 15
+    character: 1
+    dialogueText: Or do you not want to leave this place?
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 16
+    character: 0
+    dialogueText: ...
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 17
+    character: 0
+    dialogueText: FINE! I'LL DO IT!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 18
+    character: 0
+    dialogueText: SO I CAN STOP THINKING ABOUT THIS NONSENSE!
+    diaogueSpeed: 0.03
+    waitTime: 2.5
+    continueFromPrevious: 0
+  - lineNumber: 19
+    character: 1
+    dialogueText: Oh, and before I forget..
+    diaogueSpeed: 0.03
+    waitTime: 1.2
+    continueFromPrevious: 0
+  - lineNumber: 20
+    character: 1
+    dialogueText: The ability right now is "Dash".
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 21
+    character: 1
+    dialogueText: It let's you dash very fast towards the direction you are facing.
+    diaogueSpeed: 0.03
+    waitTime: 3
+    continueFromPrevious: 0
+  - lineNumber: 22
+    character: 1
+    dialogueText: And as you can see, it is in the Eighth note.
+    diaogueSpeed: 0.03
+    waitTime: 2.2
+    continueFromPrevious: 0
+  - lineNumber: 23
+    character: 1
+    dialogueText: Meaning that it is a fast one.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 24
+    character: 0
+    dialogueText: I know that already..
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 25
+    character: 1
+    dialogueText: Okay then.
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 26
+    character: 1
+    dialogueText: ...
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 27
+    character: 0
+    dialogueText: '[Sighs]'
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Scripting;
 
+[RequireComponent(typeof(AudioSource))]
 public abstract class Environment : MonoBehaviour
 {
     protected UnityEvent unityEvent;
@@ -13,6 +14,12 @@ public abstract class Environment : MonoBehaviour
     protected Collider2D _collider2D;
     protected Collision2D _collision2D;
 
+    public AudioClip EnterSound;
+    public AudioClip ExitSound;
+    public AudioClip ContinousSound;
+
+    public AudioSource audioSource;
+
 
     private void Awake()
     {
@@ -20,7 +27,10 @@ public abstract class Environment : MonoBehaviour
         {
             unityEvent = new UnityEvent();
         }
- 
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.loop = true;
+        playerMovement = GameObject.FindAnyObjectByType<PlayerMovement>();
+
     }
     protected virtual void CollideWithPlayer()
     {
@@ -34,11 +44,11 @@ public abstract class Environment : MonoBehaviour
 
     protected virtual void PlayerEnterTrigger()
     {
-        
+
     }
     protected virtual void PlayerExitTrigger()
     {
-        
+
     }
 
     protected virtual void PlayerOnTop()
@@ -51,9 +61,9 @@ public abstract class Environment : MonoBehaviour
     }
     protected virtual void BulletEnterTrigger()
     {
-        
+
     }
-    
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -62,12 +72,25 @@ public abstract class Environment : MonoBehaviour
             _collision2D = collision;
             playerMovement = _collision2D.gameObject.GetComponentInParent<PlayerMovement>();
             CollideWithPlayer();
+            if (EnterSound != null)
+            {
+                audioSource.PlayOneShot(EnterSound);
+            }
+            if (ContinousSound != null)
+            {
+                audioSource.clip = ContinousSound;
+            }
         }
         else if (collision.gameObject.GetComponent<NoteProjectile>())
         {
             _collision2D = collision;
             noteProjectile = collision.gameObject.GetComponent<NoteProjectile>();
             CollideWithBullet();
+            if (EnterSound != null)
+            {
+                audioSource.PlayOneShot(EnterSound);
+            }
+            
         }
     }
 
@@ -80,11 +103,11 @@ public abstract class Environment : MonoBehaviour
                 _collision2D = collision;
                 playerMovement = _collision2D.gameObject.GetComponentInParent<PlayerMovement>();
                 PlayerOnTop();
-                
+
             }
 
         }
-         
+
 
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -94,10 +117,16 @@ public abstract class Environment : MonoBehaviour
             _collision2D = collision;
             playerMovement = _collision2D.gameObject.GetComponentInParent<PlayerMovement>();
             PlayerExitCollider();
-            
+            if (ExitSound != null)
+            {
+                audioSource.PlayOneShot(ExitSound);
+            }
     
+            audioSource.clip = null;
+
+
         }
-         
+
 
     }
 
@@ -108,6 +137,14 @@ public abstract class Environment : MonoBehaviour
             _collider2D = other;
             playerMovement = _collider2D.gameObject.GetComponentInParent<PlayerMovement>();
             PlayerEnterTrigger();
+            if (EnterSound != null)
+            {
+                audioSource.PlayOneShot(EnterSound);
+            }
+            if (ContinousSound != null)
+            {
+                audioSource.clip = ContinousSound;
+            }
         }
         else if (other.gameObject.GetComponent<NoteProjectile>())
         {
@@ -123,8 +160,15 @@ public abstract class Environment : MonoBehaviour
             _collider2D = other;
             playerMovement = _collider2D.gameObject.GetComponentInParent<PlayerMovement>();
             PlayerExitTrigger();
+            if (ExitSound != null)
+            {
+                audioSource.PlayOneShot(ExitSound);
+            }
+
+            audioSource.clip = null;
+
         }
-     
+
     }
 
 

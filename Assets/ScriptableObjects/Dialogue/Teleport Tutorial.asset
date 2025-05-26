@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625da0555aa42341b9a64d1835bbfc2, type: 3}
+  m_Name: Teleport Tutorial
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - lineNumber: 0
+    character: 0
+    dialogueText: What the hell!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 1
+    character: 0
+    dialogueText: The button is nowhere to be found!
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 2
+    character: 0
+    dialogueText: How do I get through this clouds!?
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 3
+    character: 1
+    dialogueText: You can use the "Teleport" ability.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 4
+    character: 1
+    dialogueText: It lets you to..
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 5
+    character: 1
+    dialogueText: Well.. Teleport!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 6
+    character: 1
+    dialogueText: And as you can see, it is in Half note.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 7
+    character: 1
+    dialogueText: The half note this time means how long you can hold it.
+    diaogueSpeed: 0.03
+    waitTime: 3
+    continueFromPrevious: 0
+  - lineNumber: 8
+    character: 0
+    dialogueText: Hold??
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 9
+    character: 1
+    dialogueText: You can hold your teleport for as long as the note.
+    diaogueSpeed: 0.03
+    waitTime: 2.5
+    continueFromPrevious: 0
+  - lineNumber: 10
+    character: 1
+    dialogueText: it will affect the distance that you can teleport.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 11
+    character: 0
+    dialogueText: I see..
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0

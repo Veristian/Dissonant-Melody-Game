@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625da0555aa42341b9a64d1835bbfc2, type: 3}
+  m_Name: Float Tutorial
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - lineNumber: 0
+    character: 0
+    dialogueText: What the hell!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 1
+    character: 0
+    dialogueText: This is so high up!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 2
+    character: 0
+    dialogueText: How can I jump down there??
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 3
+    character: 1
+    dialogueText: You can use the "Float" ability.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 4
+    character: 1
+    dialogueText: It lets you slowly fall in the air.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 5
+    character: 1
+    dialogueText: And as you can see, it is in Whole note.
+    diaogueSpeed: 0.03
+    waitTime: 2.5
+    continueFromPrevious: 0
+  - lineNumber: 6
+    character: 0
+    dialogueText: Does that means I can hold it as well?
+    diaogueSpeed: 0.03
+    waitTime: 2.5
+    continueFromPrevious: 0
+  - lineNumber: 7
+    character: 1
+    dialogueText: Correct!
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 8
+    character: 1
+    dialogueText: The time you can float is effected by how long you hold the note.
+    diaogueSpeed: 0.03
+    waitTime: 3.5
+    continueFromPrevious: 0
+  - lineNumber: 9
+    character: 1
+    dialogueText: Also, be careful of the spikes down there.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 11
+    character: 1
+    dialogueText: Press "Tab" to zoom out the camera to have a better view of the
+      stages just in case..
+    diaogueSpeed: 0.03
+    waitTime: 4.5
+    continueFromPrevious: 0
+  - lineNumber: 12
+    character: 0
+    dialogueText: Wait..
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 13
+    character: 0
+    dialogueText: SPIKES!?
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 14
+    character: 0
+    dialogueText: HEY RYU!!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 15
+    character: 0
+    dialogueText: ...
+    diaogueSpeed: 0.2
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 16
+    character: 0
+    dialogueText: 'He''s not answering.. '
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 17
+    character: 0
+    dialogueText: Fine..
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0

@@ -55,6 +55,9 @@ public class NoteTypeStats : ScriptableObject
 
     [Range(0,0.125f)]public float ReleaseUpperBound;
 
+    public AudioClip noteSuccessSound;
+    public AudioClip noteFailSound;
+
 
 
 

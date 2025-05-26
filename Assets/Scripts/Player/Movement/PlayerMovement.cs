@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
 {
     #region Fields
@@ -21,18 +22,19 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     //movement
-    
+
     private Vector2 moveVelocity;
     private bool isFacingRight;
     private bool WasRunning;
     private bool isWalking;
     private bool isIdle;
 
-    public float MaxFallSpeed {private get; set;}
+    public float MaxFallSpeed { private get; set; }
     //collchecks
     private RaycastHit2D groundHit;
     private RaycastHit2D headHit;
     private bool isGrounded;
+    private bool wasGrounded;
     private bool isBumpedHead;
     private RaycastHit2D wallHitLeft;
     private RaycastHit2D wallHitRight;
@@ -44,17 +46,17 @@ public class PlayerMovement : MonoBehaviour
     private float matrixTimer;
     [SerializeField] private AnimationCurve matrixSlowDownGraph;
 
-    public bool usingMatrix {private get; set;}
+    public bool usingMatrix { private get; set; }
 
     //jump
-    public float VerticalVelocity {get; private set;}
+    public float VerticalVelocity { get; private set; }
     private bool isJumping;
     private bool isFastFalling;
     private bool isFalling;
     private float fastFallTime;
     private float fastFallReleaseSpeed;
     private int numberOfJumpsUsed;
-    
+
     private float apexPoint;
     private float timePastApexThreshold;
     private bool isPastApexThreshold;
@@ -63,55 +65,73 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpReleaseDuringBuffer;
 
     private float coyoteTimer;
-    
+
     //Ability
-    public bool usingAbility {private get; set;}
+    public bool usingAbility { private get; set; }
     private Vector2 direction;
 
     //Dash
-    public bool isDashing{private get; set;}
-    public float dashTime {private get; set;}
+    public bool isDashing { private get; set; }
+    public float dashTime { private get; set; }
     private Vector2 rbVelocity;
     //Hopping(super jump)
-    public bool isHopping {private get; set;}
-    public bool hasHopped {private get; set;}
+    public bool isHopping { private get; set; }
+    public bool hasHopped { private get; set; }
     [Header("Teleport")]
     //teleport
     [SerializeField] private LayerMask teleportAllowLayer;
-    public bool isTeleporting {private get; set;}
-    public bool WasTeleporting {private get; set;}
+    public bool isTeleporting { private get; set; }
+    public bool WasTeleporting { private get; set; }
     private Collider2D[] results;
     ContactFilter2D filter;
 
     private float teleportDistance;
     //shoot
-    public bool isShooting {private get; set;}
+    public bool isShooting { private get; set; }
     public GameObject shootProjectile;
     public float shootVelocity = 4;
-    
-    
+
+
     //environmental effects
     private float windForce;
     private Vector2 windDirection;
-    public bool OnDropablePlatform {private get; set;}
-    public JumpablePlatform jumpablePlatform {private get; set;}
+    public bool OnDropablePlatform { private get; set; }
+    public JumpablePlatform jumpablePlatform { private get; set; }
     //Animation
     private PlayerAnimation playerAnimation;
     private bool inTransitionAnimation;
     [Header("Prefab")]
     [SerializeField] private GameObject teleportOutline;
-    private GameObject teleportObject; 
+    private GameObject teleportObject;
     [SerializeField] private GameObject teleportX;
-    private GameObject XObject; 
+    private GameObject XObject;
 
     //player death
     [Header("Death")]
     [SerializeField] private float deathDistanceMultiplier;
     [SerializeField] private AnimationCurve deathCurve;
-    public float deathTimer {private get; set;}
-    public bool Death {get; set;}
+    public float deathTimer { private get; set; }
+    public bool Death { get; set; }
     private bool DeathPop;
-    public Vector3 KnockDirection {private get; set;}
+    public Vector3 KnockDirection { private get; set; }
+
+    [Header("Audio")]
+    [Header("Oneshot")]
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip landClip;
+    [SerializeField] private AudioClip dashClip;
+    [SerializeField] private AudioClip hopClip;
+    [SerializeField] private AudioClip shootClip;
+
+    [Header("Loop")]
+
+    [SerializeField] private AudioClip runClip;
+    [SerializeField] private AudioClip walkClip;
+
+    [SerializeField] private AudioClip teleportClip;
+    [SerializeField] private AudioClip fallClip;
+
+    private AudioSource audioSource;
 
     #endregion
 
@@ -129,8 +149,8 @@ public class PlayerMovement : MonoBehaviour
         playerAnimation = gameObject.GetComponentInChildren<PlayerAnimation>();
 
         NoteManager.Instance.player = this;
-       
-       
+
+
         isFacingRight = true;
 
         rb = GetComponent<Rigidbody2D>();
@@ -144,8 +164,9 @@ public class PlayerMovement : MonoBehaviour
         LevelManager.Instance.OnDeathEvent.AddListener(() => EnableDeathPop());
         LevelManager.Instance.OnPlayerSpawn.AddListener(() => DisableDeathPop());
 
+        audioSource = GetComponent<AudioSource>();
 
-        
+
     }
 
     private void Update()
@@ -159,23 +180,23 @@ public class PlayerMovement : MonoBehaviour
         {
             DashCancel();
         }
-        
+
     }
 
     private void FixedUpdate()
     {
         if (Death)
         {
-            
+
             InputManager.DisableInputs();
-            rb.velocity = new Vector2(0,0);
+            rb.velocity = new Vector2(0, 0);
             VerticalVelocity = 0;
-            moveVelocity = new Vector2(0,0);
+            moveVelocity = new Vector2(0, 0);
             if (DeathPop)
             {
                 deathTimer += Time.fixedDeltaTime;
-                rb.transform.position += new Vector3(deathCurve.Evaluate(deathTimer)*deathDistanceMultiplier*KnockDirection.x,deathCurve.Evaluate(deathTimer)*deathDistanceMultiplier*KnockDirection.y);
-                 
+                rb.transform.position += new Vector3(deathCurve.Evaluate(deathTimer) * deathDistanceMultiplier * KnockDirection.x, deathCurve.Evaluate(deathTimer) * deathDistanceMultiplier * KnockDirection.y);
+
             }
 
             return;
@@ -184,14 +205,15 @@ public class PlayerMovement : MonoBehaviour
 
         if (!usingAbility)
         {
-            
+
             //if not dashing
             Jump();
             WindForce();
-            if(isGrounded)
+            if (isGrounded)
             {
                 Move(moveStats.GroundAcceleration, moveStats.GroundDeceleration, InputManager.Movement);
-            }else
+            }
+            else
             {
                 Move(moveStats.AirAcceleration, moveStats.AirDeceleration, InputManager.Movement);
 
@@ -201,18 +223,18 @@ public class PlayerMovement : MonoBehaviour
                 matrixTimer += Time.deltaTime;
                 if (matrixTimer < matrixTime)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x*matrixSlowDownGraph.Evaluate(matrixTimer),rb.velocity.y*matrixSlowDownGraph.Evaluate(matrixTimer));
+                    rb.velocity = new Vector2(rb.velocity.x * matrixSlowDownGraph.Evaluate(matrixTimer), rb.velocity.y * matrixSlowDownGraph.Evaluate(matrixTimer));
                 }
                 else
                 {
                     usingMatrix = false;
                 }
-            
+
             }
             else
             {
                 matrixTimer = 0;
-            } 
+            }
         }
         else if (usingAbility && isDashing)
         {
@@ -224,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
             //if hopping
             Hop();
         }
-       
+
         else if (usingAbility && isShooting)
         {
             Shoot();
@@ -247,8 +269,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 SetDirection();
                 //show the outline for tp dest
-                teleportObject.transform.position = new Vector3(transform.position.x+teleportDistance*direction.x,transform.position.y+ teleportDistance*direction.y + 0.2f);
-                XObject.transform.position = new Vector3(transform.position.x+teleportDistance*direction.x,transform.position.y+ teleportDistance*direction.y + 0.2f);
+                teleportObject.transform.position = new Vector3(transform.position.x + teleportDistance * direction.x, transform.position.y + teleportDistance * direction.y + 0.2f);
+                XObject.transform.position = new Vector3(transform.position.x + teleportDistance * direction.x, transform.position.y + teleportDistance * direction.y + 0.2f);
                 results = new Collider2D[1];
                 teleportObject.GetComponent<BoxCollider2D>().OverlapCollider(filter, results);
                 if (results[0] == null)
@@ -260,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
                     XObject.GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
-            rb.velocity = new Vector2(0,0);
+            rb.velocity = new Vector2(0, 0);
             teleportDistance += Time.deltaTime * moveStats.TeleportToTimeRatio;
             //finish charging teleport
             if (!isTeleporting)
@@ -270,8 +292,8 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(teleportObject);
                 Destroy(XObject);
             }
-        
-        
+
+
         }
     }
     #endregion
@@ -303,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
     #region Animation
     private void AnimatonUpdate()
     {
-        
+
         playerAnimation.Fall = (isFalling || isFastFalling) && !usingAbility && !inTransitionAnimation && !Death && !isGrounded;
         if (rb.velocity.y > 0.1f)
         {
@@ -316,12 +338,21 @@ public class PlayerMovement : MonoBehaviour
         }
         playerAnimation.Run = (WasRunning && isGrounded && !usingAbility && !Death);
         playerAnimation.Walk = (isWalking && isGrounded && !usingAbility && !Death);
-        
+
 
         playerAnimation.Idle = (isIdle && isGrounded && !usingAbility) && !inTransitionAnimation && !Death;
         playerAnimation.Dash = isDashing && !Death;
 
         playerAnimation.teleport_hold = isTeleporting && !Death;
+        if (playerAnimation.Idle && audioSource.clip != null) audioSource.clip = null;
+        if (playerAnimation.Run && audioSource.clip != runClip) audioSource.clip = runClip;
+        if (playerAnimation.Walk && audioSource.clip != walkClip) audioSource.clip = walkClip;
+        if (playerAnimation.Fall && audioSource.clip != fallClip) audioSource.clip = fallClip;
+        if (playerAnimation.teleport_hold && audioSource.clip != teleportClip) audioSource.clip = teleportClip;
+        if (audioSource.clip != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
 
     }
     #endregion
@@ -329,11 +360,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void StopMovement()
     {
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0, 0);
         VerticalVelocity = 0;
-        moveVelocity = new Vector2(0,0);
+        moveVelocity = new Vector2(0, 0);
     }
-   
+
     private void Move(float acceleration, float deceleration, Vector2 moveInput)
     {
         //moveVelocity = rb.velocity;
@@ -341,33 +372,34 @@ public class PlayerMovement : MonoBehaviour
         {
             TurnCheck(moveInput);
             Vector2 targetVelocity = Vector2.zero;
-            if((InputManager.RunIsHeld || (WasRunning && !reverseRun)) ^ reverseRun)
+            if ((InputManager.RunIsHeld || (WasRunning && !reverseRun)) ^ reverseRun)
             {
                 if (moveInput.x > 0.5f)
                 {
-                    targetVelocity = new Vector2(1,0f) * moveStats.MaxRunSpeed;
+                    targetVelocity = new Vector2(1, 0f) * moveStats.MaxRunSpeed;
                 }
                 else
                 {
-                    targetVelocity = new Vector2(moveInput.x,0f) * moveStats.MaxRunSpeed;
-                    
+                    targetVelocity = new Vector2(moveInput.x, 0f) * moveStats.MaxRunSpeed;
+
                 }
                 WasRunning = true;
                 isWalking = false;
                 isIdle = false;
-              
-            }else
+
+            }
+            else
             {
-               
+
                 if (moveInput.x > 0.5f)
-                {   
+                {
                     targetVelocity = new Vector2(1, 0f) * moveStats.MaxWalkSpeed;
                 }
                 else
                 {
                     targetVelocity = new Vector2(moveInput.x, 0f) * moveStats.MaxWalkSpeed;
-                    
-                }   
+
+                }
                 WasRunning = false;
                 isWalking = true;
                 isIdle = false;
@@ -377,14 +409,15 @@ public class PlayerMovement : MonoBehaviour
             moveVelocity = Vector2.Lerp(moveVelocity, targetVelocity, acceleration * Time.deltaTime);
 
             rb.velocity = new Vector2(moveVelocity.x, rb.velocity.y);
-            
-        }else if (moveInput.x == 0)
+
+        }
+        else if (moveInput.x == 0)
         {
             WasRunning = false;
             isWalking = false;
             isIdle = true;
             moveVelocity = Vector2.Lerp(moveVelocity, Vector2.zero, deceleration * Time.deltaTime);
-            rb.velocity = new Vector2(moveVelocity.x,rb.velocity.y);
+            rb.velocity = new Vector2(moveVelocity.x, rb.velocity.y);
         }
     }
 
@@ -394,7 +427,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isFacingRight = true;
             Turn(true);
-        }else
+        }
+        else
         {
             isFacingRight = false;
             Turn(false);
@@ -405,15 +439,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (turnRight)
         {
-            transform.localScale = new Vector3(1,1,1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
-            transform.localScale = new Vector3(-1,1,1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
     #endregion
-    
+
     #region Special Environment
 
     public void ApplyWind(float _windForce, Vector2 _windDirection)
@@ -425,12 +459,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            moveVelocity.x += windForce*windDirection.normalized.x;
+            moveVelocity.x += windForce * windDirection.normalized.x;
         }
         else
         {
-            moveVelocity.x += windForce*windDirection.normalized.x;
-            VerticalVelocity += windForce*windDirection.normalized.y;
+            moveVelocity.x += windForce * windDirection.normalized.x;
+            VerticalVelocity += windForce * windDirection.normalized.y;
         }
     }
     public void ApplyVelocity(Vector2 velocity, bool overrideCurrentVelocity)
@@ -445,7 +479,7 @@ public class PlayerMovement : MonoBehaviour
             moveVelocity.x += velocity.x;
             VerticalVelocity += velocity.y;
         }
-        
+
     }
 
     #endregion
@@ -462,6 +496,9 @@ public class PlayerMovement : MonoBehaviour
             }
             jumpBufferTime = moveStats.JumpBufferTime;
             jumpReleaseDuringBuffer = false;
+
+            
+
         }
 
         //release Jump
@@ -482,7 +519,7 @@ public class PlayerMovement : MonoBehaviour
                     VerticalVelocity = 0f;
 
                 }
-                else 
+                else
                 {
                     isFastFalling = true;
                     fastFallReleaseSpeed = VerticalVelocity;
@@ -540,6 +577,8 @@ public class PlayerMovement : MonoBehaviour
         jumpBufferTime = 0f;
         numberOfJumpsUsed += jumpsUsed;
         VerticalVelocity = moveStats.InitialJumpVelocity;
+        audioSource.PlayOneShot(jumpClip);
+
     }
 
     private void Jump()
@@ -607,7 +646,7 @@ public class PlayerMovement : MonoBehaviour
         //cut jump early
         if (isFastFalling)
         {
-           
+
             if (fastFallTime >= moveStats.TimeForUpwardsCancel)
             {
                 VerticalVelocity += moveStats.Gravity * moveStats.GravityOnReleaseMultiplier * Time.fixedDeltaTime;
@@ -622,11 +661,11 @@ public class PlayerMovement : MonoBehaviour
             fastFallTime += Time.fixedDeltaTime;
 
         }
-        
+
         //falling with normal gravity
-        if (!isGrounded && (!isJumping || isFalling) )
+        if (!isGrounded && (!isJumping || isFalling))
         {
-            if(!isFalling)
+            if (!isFalling)
             {
                 isFalling = true;
             }
@@ -636,8 +675,8 @@ public class PlayerMovement : MonoBehaviour
         //clamp max fall speed
         VerticalVelocity = Mathf.Clamp(VerticalVelocity, -MaxFallSpeed, 50f);
 
-        rb.velocity = new Vector2(rb.velocity.x,VerticalVelocity);
-    
+        rb.velocity = new Vector2(rb.velocity.x, VerticalVelocity);
+
 
     }
     #endregion
@@ -653,17 +692,17 @@ public class PlayerMovement : MonoBehaviour
         //left
         else if (InputManager.Movement.x < -0.5 && InputManager.Movement.y < 0.5 && InputManager.Movement.y > -0.5)
         {
-            direction =  Vector2.left;
+            direction = Vector2.left;
         }
         //up
         else if (InputManager.Movement.x < 0.5 && InputManager.Movement.y > 0.5 && InputManager.Movement.x > -0.5)
         {
-            direction =  Vector2.up;
+            direction = Vector2.up;
         }
         //down
         else if (InputManager.Movement.x < 0.5 && InputManager.Movement.y < -0.5 && InputManager.Movement.x > -0.5)
         {
-            direction =  Vector2.down;
+            direction = Vector2.down;
 
         }
         //upright
@@ -689,7 +728,7 @@ public class PlayerMovement : MonoBehaviour
         {
             direction = (Vector2.down + Vector2.left).normalized;
 
-        } 
+        }
         else if (isFacingRight)
         {
             direction = Vector2.right;
@@ -709,19 +748,21 @@ public class PlayerMovement : MonoBehaviour
             VerticalVelocity = -0.01f;
             isDashing = false;
             usingAbility = false;
-        } else
+        }
+        else
         {
             if (dashTime == 0)
             {
                 SetDirection();
+                audioSource.PlayOneShot(dashClip);
             }
             dashTime += Time.deltaTime;
-            rbVelocity = new Vector2(moveStats.dashCurve.Evaluate(dashTime/moveStats.TimeTillCompleteDash)*moveStats.DashDistance/dashTime,moveStats.dashCurve.Evaluate(dashTime/moveStats.TimeTillCompleteDash)*moveStats.DashDistance/dashTime); 
+            rbVelocity = new Vector2(moveStats.dashCurve.Evaluate(dashTime / moveStats.TimeTillCompleteDash) * moveStats.DashDistance / dashTime, moveStats.dashCurve.Evaluate(dashTime / moveStats.TimeTillCompleteDash) * moveStats.DashDistance / dashTime);
             rb.velocity = rbVelocity * direction;
 
 
         }
-        
+
     }
 
     private void DashCancel()
@@ -740,6 +781,7 @@ public class PlayerMovement : MonoBehaviour
         {
             VerticalVelocity = moveStats.InitialHopVelocity;
             hasHopped = true;
+            audioSource.PlayOneShot(hopClip);
         }
 
         apexPoint = Mathf.InverseLerp(moveStats.InitialHopVelocity, 0f, VerticalVelocity);
@@ -760,7 +802,8 @@ public class PlayerMovement : MonoBehaviour
                 timePastApexThreshold = 0f;
             }
 
-            if (isPastApexThreshold){
+            if (isPastApexThreshold)
+            {
                 timePastApexThreshold += Time.fixedDeltaTime;
                 if (timePastApexThreshold < moveStats.ApexHangTime)
                 {
@@ -784,9 +827,9 @@ public class PlayerMovement : MonoBehaviour
                 isPastApexThreshold = false;
             }
         }
-        
-        
-        rb.velocity = new Vector2(rb.velocity.x,VerticalVelocity);
+
+
+        rb.velocity = new Vector2(rb.velocity.x, VerticalVelocity);
 
 
     }
@@ -797,7 +840,7 @@ public class PlayerMovement : MonoBehaviour
         if (results[0] == null)
         {
             SetDirection();
-            rb.transform.position += new Vector3(teleportDistance * direction.x,teleportDistance* direction.y);
+            rb.transform.position += new Vector3(teleportDistance * direction.x, teleportDistance * direction.y);
         }
         WasTeleporting = false;
         usingAbility = false;
@@ -817,8 +860,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 proj.transform.parent = null;
                 proj.GetComponent<Rigidbody2D>().velocity = direction * shootVelocity;
+                audioSource.PlayOneShot(shootClip);
             }
-            
+
         }
 
     }
@@ -828,7 +872,8 @@ public class PlayerMovement : MonoBehaviour
     #region CollisionChecks
     private void IsGrounded()
     {
-        Vector2 boxCastOrigin = new Vector2(feetColl.bounds.center.x,feetColl.bounds.min.y);
+        
+        Vector2 boxCastOrigin = new Vector2(feetColl.bounds.center.x, feetColl.bounds.min.y);
         Vector2 boxCastSize = new Vector2(feetColl.bounds.size.x, moveStats.GroundDetectionRayLength);
 
         Collider2D overlap = Physics2D.OverlapBox(feetColl.bounds.center, feetColl.bounds.size, 0f, moveStats.GroundLayer);
@@ -843,6 +888,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+
+        if (isGrounded && !wasGrounded)
+        {
+            audioSource.PlayOneShot(landClip);
+        }
+        wasGrounded = isGrounded;
 
         #region debug visualization
         if (moveStats.DebugShowIsGroundedBox)
@@ -861,9 +912,10 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y), Vector2.down * moveStats.GroundDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector2(boxCastOrigin.x + boxCastSize.x / 2, boxCastOrigin.y), Vector2.down * moveStats.GroundDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y - moveStats.GroundDetectionRayLength), Vector2.right * boxCastSize.x, rayColor);
-                
-        #endregion
+
+            #endregion
         }
+        
     }
     private void CheckWallBump()
     {
@@ -899,7 +951,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void BumpedHead()
     {
-        Vector2 boxCastOrigin = new Vector2(feetColl.bounds.center.x,bodyColl.bounds.max.y);
+        Vector2 boxCastOrigin = new Vector2(feetColl.bounds.center.x, bodyColl.bounds.max.y);
         Vector2 boxCastSize = new Vector2(feetColl.bounds.size.x * moveStats.Width, moveStats.HeadDetectionRayLength);
 
         headHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize, 0f, Vector2.up, moveStats.HeadDetectionRayLength, moveStats.HeadLayer);
@@ -931,8 +983,8 @@ public class PlayerMovement : MonoBehaviour
             Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y), Vector2.up * moveStats.HeadDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector2(boxCastOrigin.x + boxCastSize.x / 2, boxCastOrigin.y), Vector2.up * moveStats.HeadDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y + moveStats.HeadDetectionRayLength), Vector2.right * boxCastSize.x * headWidth, rayColor);
-                
-        #endregion
+
+            #endregion
         }
     }
     private void CollisionChecks()
@@ -953,9 +1005,9 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded)
         {
             coyoteTimer -= Time.deltaTime;
-        } 
-        else 
-        { 
+        }
+        else
+        {
             coyoteTimer = moveStats.JumpCoyoteTime;
         }
     }

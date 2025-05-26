@@ -61,24 +61,32 @@ public class CameraManager : MonoBehaviour
         }
 
         //update target group
-        targetGroup.m_Targets[0].target = LevelManager.Instance.currentCheckpoint.gameObject.transform;
-        if (LevelManager.Instance.nextCheckpoint == null)
+        if (targetGroup.m_Targets.Length > 0 )
         {
-            if (playerToFollow != null)
+            if (LevelManager.Instance.currentCheckpoint == null)
             {
-                targetGroup.m_Targets[1].target = playerToFollow.transform;
+                return;
+            }
+            targetGroup.m_Targets[0].target = LevelManager.Instance.currentCheckpoint.gameObject.transform;
+            if (LevelManager.Instance.nextCheckpoint == null)
+            {
+                if (playerToFollow != null)
+                {
+                    targetGroup.m_Targets[1].target = playerToFollow.transform;
+                }
+                else
+                {
+                    playerToFollow = FindObjectOfType<PlayerMovement>().gameObject;
+                    targetGroup.m_Targets[1].target = playerToFollow.transform;
+                }            
+
+                
             }
             else
             {
-                playerToFollow = FindObjectOfType<PlayerMovement>().gameObject;
-                targetGroup.m_Targets[1].target = playerToFollow.transform;
-            }            
+                targetGroup.m_Targets[1].target = LevelManager.Instance.nextCheckpoint.gameObject.transform;
+            }
 
-            
-        }
-        else
-        {
-            targetGroup.m_Targets[1].target = LevelManager.Instance.nextCheckpoint.gameObject.transform;
         }
     }
 

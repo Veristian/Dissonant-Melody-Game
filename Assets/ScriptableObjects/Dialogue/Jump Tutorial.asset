@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625da0555aa42341b9a64d1835bbfc2, type: 3}
+  m_Name: Jump Tutorial
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - lineNumber: 0
+    character: 1
+    dialogueText: Press  "`" (Spacebar) to jump.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 1
+    character: 0
+    dialogueText: "Wha\u2014!?"
+    diaogueSpeed: 0.03
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 2
+    character: 0
+    dialogueText: Where are you?
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 3
+    character: 0
+    dialogueText: How can I hear your voice?
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 4
+    character: 1
+    dialogueText: I used telepathy to communicate in your mind.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 5
+    character: 0
+    dialogueText: I don't understand how this world works anymore.
+    diaogueSpeed: 0.03
+    waitTime: 2.1
+    continueFromPrevious: 0
+  - lineNumber: 6
+    character: 1
+    dialogueText: You'll get used to it one day.
+    diaogueSpeed: 0.03
+    waitTime: 1.8
+    continueFromPrevious: 0

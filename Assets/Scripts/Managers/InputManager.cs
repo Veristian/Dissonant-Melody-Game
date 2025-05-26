@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour
     {
         if (canTakeInputs)
         {
-            if (!(DialogueManager.Instance.inDialogue || DialogueManager.Instance.betweenDialogue))
+            if (!(DialogueManager.Instance.dialogueBox.activeSelf))
             {  
                 Movement = _moveAction.ReadValue<Vector2>();
 

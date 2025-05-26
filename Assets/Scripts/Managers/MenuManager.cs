@@ -6,8 +6,10 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenuManager : Singleton<MenuManager>
+public class MenuManager : Singleton<MenuManager>, IPointerEnterHandler, IPointerExitHandler
 {
+    private GameObject previousSelection;
+
     [Header("Menu Objects")]
     public GameObject pause_menu;
     public GameObject setting_menu;
@@ -62,13 +64,20 @@ public class MenuManager : Singleton<MenuManager>
     {
         pause_menu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(_pauseMenuFirst);
+
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+        // Deselect the current selected object to prevent keyboard/controller highlight
+            if (EventSystem.current.currentSelectedGameObject != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+        }
     }
 
     public void ClosePauseMenu()
     {
         pause_menu.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-        
     }
 
     public void OpenSettingMenu()
@@ -84,9 +93,23 @@ public class MenuManager : Singleton<MenuManager>
     }
     public void ReturnTitle()
     {
-
+        MenuUnpause();
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        previousSelection = EventSystem.current.currentSelectedGameObject;
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (previousSelection != null)
+        {
+            EventSystem.current.SetSelectedGameObject(previousSelection);
+            previousSelection = null;
+        }
+    }
 
     #endregion
 }

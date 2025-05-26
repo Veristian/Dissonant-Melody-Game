@@ -6,7 +6,7 @@ public class PlayerSpawn : Checkpoint
 {
     [SerializeField] private GameObject PlayerPrefab;
 
-    private void Awake()
+    private void Start()
     {
         PlayerMovement existingPlayer = FindObjectOfType<PlayerMovement>();
 

@@ -6,6 +6,7 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class NoteManager : Singleton<NoteManager>
 {
     [Header("Refered From")]
@@ -32,10 +33,14 @@ public class NoteManager : Singleton<NoteManager>
     private UnityEvent deleteNoteEvent;
     private UnityEvent ChangeNoteEvent;
 
-    public MusicSheet musicSheet {private get; set;}
+    public MusicSheet musicSheet { private get; set; }
 
     //events
     public UnityEvent dashEvent = new UnityEvent();
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip metronomeSound;
+
 
     private void Start()
     {
@@ -55,12 +60,15 @@ public class NoteManager : Singleton<NoteManager>
         drawNoteEvent.AddListener(() => musicSheet.drawNotes());
         deleteNoteEvent.AddListener(() => musicSheet.deleteNotes());
         ChangeNoteEvent.AddListener(() => musicSheet.ChangeImage(noteIncrement, notesTimeBoundary, noteTypeStatsList));
+        ChangeNoteEvent.AddListener(() => PlayNoteSound(noteIncrement, notesTimeBoundary, noteTypeStatsList));
+
         LevelManager.Instance.OnDeathEvent.AddListener(() => NoteManagerResetState());
+        audioSource = GetComponent<AudioSource>();
 
     }
     private void Update()
     {
-        
+
         if (!start)
         {
             StartNoteCheck();
@@ -81,7 +89,6 @@ public class NoteManager : Singleton<NoteManager>
         timeTotal = 0;
         int count = 0;
 
-        
         foreach (NoteTypeStats noteStats in noteTypeStatsList)
         {
             // Ensure each NoteInfo instance is initialized
@@ -90,22 +97,22 @@ public class NoteManager : Singleton<NoteManager>
             if (noteStats.type == NoteTypeStats.Type.Eighth || noteStats.type == NoteTypeStats.Type.Quarter)
             {
                 notesTimeBoundary[count].type = NoteInfo.Type.Click;
-                notesTimeBoundary[count].pressedStartBoundary = timeTotal - noteStats.PressedLowerBound*multiplier;
-                notesTimeBoundary[count].pressedEndBoundary = timeTotal + noteStats.PressedUpperBound*multiplier;
-                timeTotal += noteStats.noteLength*multiplier;
+                notesTimeBoundary[count].pressedStartBoundary = timeTotal - noteStats.PressedLowerBound * multiplier;
+                notesTimeBoundary[count].pressedEndBoundary = timeTotal + noteStats.PressedUpperBound * multiplier;
+                timeTotal += noteStats.noteLength * multiplier;
 
             }
-           
+
             else if (noteStats.type == NoteTypeStats.Type.Whole || noteStats.type == NoteTypeStats.Type.Half)
             {
                 notesTimeBoundary[count].type = NoteInfo.Type.Hold;
-                notesTimeBoundary[count].pressedStartBoundary = timeTotal - noteStats.PressedLowerBound*multiplier;
-                notesTimeBoundary[count].pressedEndBoundary = timeTotal + noteStats.PressedUpperBound*multiplier;
-                
-                timeTotal += noteStats.noteLength*multiplier;
+                notesTimeBoundary[count].pressedStartBoundary = timeTotal - noteStats.PressedLowerBound * multiplier;
+                notesTimeBoundary[count].pressedEndBoundary = timeTotal + noteStats.PressedUpperBound * multiplier;
 
-                notesTimeBoundary[count].releaseStartBoundary = timeTotal - noteStats.ReleaseLowerBound*multiplier;
-                notesTimeBoundary[count].releaseEndBoundary = timeTotal + noteStats.ReleaseUpperBound*multiplier;
+                timeTotal += noteStats.noteLength * multiplier;
+
+                notesTimeBoundary[count].releaseStartBoundary = timeTotal - noteStats.ReleaseLowerBound * multiplier;
+                notesTimeBoundary[count].releaseEndBoundary = timeTotal + noteStats.ReleaseUpperBound * multiplier;
 
 
             }
@@ -139,14 +146,27 @@ public class NoteManager : Singleton<NoteManager>
     private void StartNoteCheck()
     {
         //will only start when ability button is pressed and the current song has not finished
-        if(InputManager.AbilityWasPressed && !Finish)
+        if (InputManager.AbilityWasPressed && !Finish)
         {
             start = true;
+            StartCoroutine(PlayMetronome());
+
         }
+    }
+
+    private IEnumerator PlayMetronome()
+    {
+        while (true)
+        {
+            audioSource.PlayOneShot(metronomeSound);
+            yield return new WaitForSeconds(1.0f / (bpm / 60.0f));
+        }
+
     }
 
     private void ResetAll()
     {
+        StopAllCoroutines();
         Finish = true;
         notesTimeBoundary = null;
         ResetNote();
@@ -156,17 +176,74 @@ public class NoteManager : Singleton<NoteManager>
     {
         noteTypeStatsList = new NoteTypeStats[0];
     }
+
+    private void PlayNoteSound(int noteIncrement, NoteInfo[] notesTimeBoundary, NoteTypeStats[] noteTypeStatsList)
+    {
+        switch (notesTimeBoundary[noteIncrement].type)
+        {
+            case NoteInfo.Type.Click:
+                switch (notesTimeBoundary[noteIncrement].startState)
+                {
+                    case NoteInfo.State.Success:
+                        if (noteTypeStatsList[noteIncrement].noteSuccessSound)
+                        {
+                            audioSource.PlayOneShot(noteTypeStatsList[noteIncrement].noteSuccessSound);
+                        }
+                        break;
+                    case NoteInfo.State.Fail:
+                        if (noteTypeStatsList[noteIncrement].noteFailSound)
+                        {
+                            audioSource.PlayOneShot(noteTypeStatsList[noteIncrement].noteFailSound);
+                        }
+                        break;
+                }
+                break;
+            case NoteInfo.Type.Hold:
+
+                switch (notesTimeBoundary[noteIncrement].endState)
+                {
+                    case NoteInfo.State.Success:
+                        audioSource.clip = null;
+                        audioSource.Stop();
+                        break;
+                    case NoteInfo.State.Fail:
+                        audioSource.clip = null;
+                        audioSource.Stop();
+                        break;
+                    case NoteInfo.State.Idle:
+                        switch (notesTimeBoundary[noteIncrement].startState)
+                        {
+                            case NoteInfo.State.Success:
+                                if (noteTypeStatsList[noteIncrement].noteSuccessSound)
+                                {
+                                    audioSource.clip = noteTypeStatsList[noteIncrement].noteSuccessSound;
+                                }
+                                break;
+                            case NoteInfo.State.Fail:
+                                if (noteTypeStatsList[noteIncrement].noteFailSound)
+                                {
+                                    audioSource.clip = noteTypeStatsList[noteIncrement].noteFailSound;
+                                }
+                                break;
+                        }
+                        audioSource.Play();
+                        break;
+                }
+                break;
+        }
+    }
+
     #endregion
-    
+
     #region Ability
 
     private void AbilityChecks()
     {
 
-       
+
         //increment time
         Progress += Time.deltaTime;
-        
+
         if (noteIncrement < notesTimeBoundary.Length)
         {
             if (noteTypeStatsList[noteIncrement].isRest)
@@ -185,24 +262,24 @@ public class NoteManager : Singleton<NoteManager>
                     //if click before then fail
                     if (Progress < notesTimeBoundary[noteIncrement].pressedStartBoundary)
                     {
-                        if(InputManager.AbilityWasPressed)
-                        {   
+                        if (InputManager.AbilityWasPressed)
+                        {
                             notesTimeBoundary[noteIncrement].startState = NoteInfo.State.Fail;
                             ChangeNoteEvent.Invoke();
                             noteIncrement++;
                         }
                     }
-                    
+
                     //if click after ready then succeed and before pass
                     else if (Progress > notesTimeBoundary[noteIncrement].pressedStartBoundary && Progress <= notesTimeBoundary[noteIncrement].pressedEndBoundary)
                     {
-                        if(InputManager.AbilityWasPressed)
-                        {       
+                        if (InputManager.AbilityWasPressed)
+                        {
                             notesTimeBoundary[noteIncrement].startState = NoteInfo.State.Success;
 
                             switch (noteTypeStatsList[noteIncrement].ability)
                             {
-                                
+
                                 //Dashing
                                 case NoteTypeStats.Ability.Dash:
                                     player.usingAbility = true;
@@ -224,7 +301,7 @@ public class NoteManager : Singleton<NoteManager>
 
                                     break;
                             }
-                         
+
                             ChangeNoteEvent.Invoke();
                             noteIncrement++;
                         }
@@ -236,15 +313,15 @@ public class NoteManager : Singleton<NoteManager>
                         ChangeNoteEvent.Invoke();
                         noteIncrement++;
                     }
-                
+
                     break;
 
                 case NoteInfo.Type.Hold:
                     //if click before then fail
                     if (Progress < notesTimeBoundary[noteIncrement].pressedStartBoundary && notesTimeBoundary[noteIncrement].startState == NoteInfo.State.Idle)
                     {
-                        if(InputManager.AbilityWasPressed)
-                        {  
+                        if (InputManager.AbilityWasPressed)
+                        {
                             notesTimeBoundary[noteIncrement].startState = NoteInfo.State.Fail;
                             notesTimeBoundary[noteIncrement].endState = NoteInfo.State.Fail;
                             ChangeNoteEvent.Invoke();
@@ -254,8 +331,8 @@ public class NoteManager : Singleton<NoteManager>
                     //if click after ready then succeed
                     else if (Progress >= notesTimeBoundary[noteIncrement].pressedStartBoundary && Progress <= notesTimeBoundary[noteIncrement].pressedEndBoundary && notesTimeBoundary[noteIncrement].startState == NoteInfo.State.Idle)
                     {
-                        if(InputManager.AbilityWasPressed)
-                        {  
+                        if (InputManager.AbilityWasPressed)
+                        {
 
                             notesTimeBoundary[noteIncrement].startState = NoteInfo.State.Success;
                             switch (noteTypeStatsList[noteIncrement].ability)
@@ -263,6 +340,8 @@ public class NoteManager : Singleton<NoteManager>
                                 //Float
                                 case NoteTypeStats.Ability.Float:
                                     player.MaxFallSpeed = player.moveStats.FloatMaxFallSpeed;
+                                    ChangeNoteEvent.Invoke();
+
                                     break;
 
                                 //Teleport
@@ -270,8 +349,10 @@ public class NoteManager : Singleton<NoteManager>
                                     player.usingAbility = true;
                                     player.isTeleporting = true;
                                     player.WasTeleporting = true;
+                                    ChangeNoteEvent.Invoke();
+
                                     break;
-                    
+
                             }
 
                         }
@@ -284,12 +365,12 @@ public class NoteManager : Singleton<NoteManager>
                         ChangeNoteEvent.Invoke();
                         noteIncrement++;
                     }
-                    
+
                     //if release early then fail
                     else if (Progress < notesTimeBoundary[noteIncrement].releaseStartBoundary && notesTimeBoundary[noteIncrement].endState == NoteInfo.State.Idle)
                     {
-                        if(InputManager.AbilityWasReleased)
-                        { 
+                        if (InputManager.AbilityWasReleased)
+                        {
                             notesTimeBoundary[noteIncrement].endState = NoteInfo.State.Fail;
                             switch (noteTypeStatsList[noteIncrement].ability)
                             {
@@ -302,7 +383,7 @@ public class NoteManager : Singleton<NoteManager>
                                 case NoteTypeStats.Ability.Teleport:
                                     player.isTeleporting = false;
                                     break;
-                    
+
                             }
                             ChangeNoteEvent.Invoke();
                             noteIncrement++;
@@ -311,8 +392,8 @@ public class NoteManager : Singleton<NoteManager>
                     //if release after available success
                     else if (Progress >= notesTimeBoundary[noteIncrement].releaseStartBoundary && Progress < notesTimeBoundary[noteIncrement].releaseEndBoundary && notesTimeBoundary[noteIncrement].endState == NoteInfo.State.Idle)
                     {
-                        if(InputManager.AbilityWasReleased)
-                        {  
+                        if (InputManager.AbilityWasReleased)
+                        {
                             notesTimeBoundary[noteIncrement].endState = NoteInfo.State.Success;
                             switch (noteTypeStatsList[noteIncrement].ability)
                             {
@@ -325,7 +406,7 @@ public class NoteManager : Singleton<NoteManager>
                                 case NoteTypeStats.Ability.Teleport:
                                     player.isTeleporting = false;
                                     break;
-                    
+
                             }
                             ChangeNoteEvent.Invoke();
                             noteIncrement++;
@@ -347,22 +428,22 @@ public class NoteManager : Singleton<NoteManager>
                                 player.isTeleporting = false;
 
                                 break;
-                
+
                         }
                         ChangeNoteEvent.Invoke();
                         noteIncrement++;
-                        
+
                     }
                     break;
 
             }
         }
-        if (Progress > notesTimeBoundary[notesTimeBoundary.Length-1].releaseEndBoundary && Progress > notesTimeBoundary[notesTimeBoundary.Length-1].pressedEndBoundary)
+        if (Progress > notesTimeBoundary[notesTimeBoundary.Length - 1].releaseEndBoundary && Progress > notesTimeBoundary[notesTimeBoundary.Length - 1].pressedEndBoundary)
         {
             NoteManagerResetState();
             return;
         }
-    
+
 
     }
 

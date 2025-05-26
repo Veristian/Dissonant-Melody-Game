@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625da0555aa42341b9a64d1835bbfc2, type: 3}
+  m_Name: Stage 1 - Start
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - lineNumber: 0
+    character: 1
+    dialogueText: 'And.. '
+    diaogueSpeed: 0.05
+    waitTime: 0.8
+    continueFromPrevious: 0
+  - lineNumber: 1
+    character: 1
+    dialogueText: That is it for the basics, Fenny.
+    diaogueSpeed: 0.05
+    waitTime: 1.8
+    continueFromPrevious: 0
+  - lineNumber: 2
+    character: 0
+    dialogueText: I don't want to do this anymore..
+    diaogueSpeed: 0.05
+    waitTime: 1.8
+    continueFromPrevious: 0
+  - lineNumber: 3
+    character: 1
+    dialogueText: Listen Fenny..
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 4
+    character: 1
+    dialogueText: If you want to leave this place..
+    diaogueSpeed: 0.05
+    waitTime: 1.8
+    continueFromPrevious: 0
+  - lineNumber: 5
+    character: 1
+    dialogueText: You have to do it!
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 6
+    character: 0
+    dialogueText: 'I.. '
+    diaogueSpeed: 0.05
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 7
+    character: 0
+    dialogueText: I hope I can finish it..
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 8
+    character: 1
+    dialogueText: I believe in you Fenny.
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 9
+    character: 0
+    dialogueText: I can't even remember which note is what now..
+    diaogueSpeed: 0.05
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 10
+    character: 1
+    dialogueText: Oh, that is easy!
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 11
+    character: 1
+    dialogueText: Just press the "G" button.
+    diaogueSpeed: 0.05
+    waitTime: 1.8
+    continueFromPrevious: 0
+  - lineNumber: 12
+    character: 0
+    dialogueText: Oh..
+    diaogueSpeed: 0.05
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 13
+    character: 0
+    dialogueText: Thank you for telling me I guess..
+    diaogueSpeed: 0.05
+    waitTime: 1.8
+    continueFromPrevious: 0
+  - lineNumber: 14
+    character: 1
+    dialogueText: Alright, the rest is yours now Fenny.
+    diaogueSpeed: 0.05
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 15
+    character: 1
+    dialogueText: Wish you a good luck!
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 16
+    character: 1
+    dialogueText: '...
+
+'
+    diaogueSpeed: 0.05
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 17
+    character: 0
+    dialogueText: '...
+
+'
+    diaogueSpeed: 0.05
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 18
+    character: 0
+    dialogueText: Alright..
+    diaogueSpeed: 0.05
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 19
+    character: 0
+    dialogueText: I don't know how long it will take..
+    diaogueSpeed: 0.05
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 20
+    character: 0
+    dialogueText: Why am I even doing this..
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 21
+    character: 0
+    dialogueText: I.. used to love this..
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 22
+    character: 0
+    dialogueText: When did everything gone wrong I wonder..
+    diaogueSpeed: 0.05
+    waitTime: 2.5
+    continueFromPrevious: 0
+  - lineNumber: 23
+    character: 0
+    dialogueText: Anyways..
+    diaogueSpeed: 0.05
+    waitTime: 1
+    continueFromPrevious: 0
+  - lineNumber: 24
+    character: 0
+    dialogueText: Here goes nothing!
+    diaogueSpeed: 0.05
+    waitTime: 1.5
+    continueFromPrevious: 0

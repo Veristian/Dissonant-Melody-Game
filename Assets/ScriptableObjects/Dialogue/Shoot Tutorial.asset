@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6625da0555aa42341b9a64d1835bbfc2, type: 3}
+  m_Name: Shoot Tutorial
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - lineNumber: 0
+    character: 0
+    dialogueText: What the hell is this cloud..
+    diaogueSpeed: 0.03
+    waitTime: 1.6
+    continueFromPrevious: 0
+  - lineNumber: 1
+    character: 0
+    dialogueText: It's blocking my path!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 2
+    character: 1
+    dialogueText: you have learned the "Shoot" ability.
+    diaogueSpeed: 0.03
+    waitTime: 1.8
+    continueFromPrevious: 0
+  - lineNumber: 3
+    character: 1
+    dialogueText: To put it simple, it let's you shoot.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 4
+    character: 1
+    dialogueText: The sole purpose of "Shoot" ability is just to activate a button.
+    diaogueSpeed: 0.03
+    waitTime: 3
+    continueFromPrevious: 0
+  - lineNumber: 5
+    character: 1
+    dialogueText: That's it!
+    diaogueSpeed: 0.03
+    waitTime: 1.2
+    continueFromPrevious: 0
+  - lineNumber: 6
+    character: 0
+    dialogueText: That's it?
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 7
+    character: 1
+    dialogueText: Yes, That's it!
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
+  - lineNumber: 8
+    character: 1
+    dialogueText: The button then triggers something in the stages.
+    diaogueSpeed: 0.03
+    waitTime: 2
+    continueFromPrevious: 0
+  - lineNumber: 9
+    character: 1
+    dialogueText: Try it yourself.
+    diaogueSpeed: 0.03
+    waitTime: 1.5
+    continueFromPrevious: 0
